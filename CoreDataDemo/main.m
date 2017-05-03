@@ -2,8 +2,8 @@
 //  main.m
 //  CoreDataDemo
 //
-//  Created by 王恒求 on 2017/4/28.
-//  Copyright © 2017年 王恒求. All rights reserved.
+//  Created by 王恒求 on 2016/8/22.
+//  Copyright © 2016年 王恒求. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

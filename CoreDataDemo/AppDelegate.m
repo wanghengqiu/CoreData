@@ -2,11 +2,15 @@
 //  AppDelegate.m
 //  CoreDataDemo
 //
-//  Created by 王恒求 on 2017/4/28.
-//  Copyright © 2017年 王恒求. All rights reserved.
+//  Created by 王恒求 on 2016/8/22.
+//  Copyright © 2016年 王恒求. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
+#import "AppUtily.h"
+#import "UIImage+Extern.h"
+#import "StoreManager.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +20,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor=[UIColor whiteColor];
+    
+    ViewController* vc=[[ViewController alloc]init];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:HEX2RGB(kNavBackgroundColor)] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                           [UIColor whiteColor],NSForegroundColorAttributeName, [UIFont systemFontOfSize:21], NSFontAttributeName, nil]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    UINavigationController* nav=[[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController=nav;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -46,7 +61,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    [self saveContext];
+    [[StoreManager sharedStoreManager]saveWithContext:[StoreManager sharedStoreManager].mainManagedObjectContext];
 }
 
 
